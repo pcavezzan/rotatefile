@@ -1,4 +1,4 @@
-package gorotatefile
+package files
 
 import (
 	"bufio"
@@ -12,20 +12,20 @@ import (
 
 type RotateFile struct {
 	MaxSize int
-	Mode    ExecMode
+	Mode    RotateExecMode
 
 	buffer *bytes.Buffer
 	nFiles int
 }
 
-type ExecMode int
+type RotateExecMode int
 
 const (
 	TIMING = iota + 1
 	VERBOSE
 )
 
-func NewRotateFile(mSize int, mode ExecMode) RotateFile {
+func NewRotateFile(mSize int, mode RotateExecMode) RotateFile {
 	maxBytes := mSize * 1024
 	buf := bytes.NewBuffer(make([]byte, maxBytes))
 	return RotateFile{

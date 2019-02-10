@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/pcavezzan/gorotatefile"
+	"github.com/pcavezzan/rotatefile/files"
 	"log"
 	"os"
 )
@@ -23,12 +23,12 @@ func main() {
 		panic(err)
 	}
 
-	if info.Mode()&os.ModeCharDevice != 0 || info.Size() <= 0 {
+	if info.Mode()&os.ModeCharDevice != 0 || info.Size() < 0 {
 		log.Println("This tools is intended to work with stding.")
-		log.Println("Usage: cat myfile | gorotatefile or gorotatefile < myfile")
+		log.Println("Usage: cat myfile | rotatefile or rotatefile < myfile")
 		os.Exit(1)
 	}
 
-	rf := gorotatefile.NewRotateFile(filesize*1000, gorotatefile.ExecMode(mode))
+	rf := files.NewRotateFile(filesize*1000, files.RotateExecMode(mode))
 	rf.Rotate(os.Stdin)
 }
