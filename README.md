@@ -5,7 +5,7 @@ Just a personal tools written for fun.
 ## How to run it
 
 ```bash
-$> git clone https://github.com/pcavezzan/gorotatefile
+$> git clone https://github.com/pcavezzan/rotatefile
 $> cd rotatefile
 $> go build && go install
 ```
